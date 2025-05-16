@@ -44,9 +44,12 @@ W repozytorium znajdują się przykładowe pliki `.xls` wygenerowane przez scrap
 - `_2022-01-31_indeksy.xls` – notowania indeksów,
 - `_2022-01-31_obligacje.xls` – notowania obligacji skarbowych.
 
+
 Każdy z tych plików został pobrany automatycznie z archiwum GPW i pokazuje strukturę danych, jaką generuje skrypt.
+
 Można je otworzyć bez potrzeby uruchamiania kodu, aby szybko zapoznać się z efektem działania scrapera.
 ---
 
 Autorka: Arina Reutskaya  www.linkedin.com/in/arina-reutskaya
+
 Repozytorium stworzone na potrzeby pracy magisterskiej dot. strategii FIRE w warunkach GPW.
