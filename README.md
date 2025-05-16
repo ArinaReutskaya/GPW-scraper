@@ -48,5 +48,5 @@ Każdy z tych plików został pobrany automatycznie z archiwum GPW i pokazuje st
 Można je otworzyć bez potrzeby uruchamiania kodu, aby szybko zapoznać się z efektem działania scrapera.
 ---
 
-Autorka: Arina Reutskaya  
+Autorka: Arina Reutskaya  www.linkedin.com/in/arina-reutskaya
 Repozytorium stworzone na potrzeby pracy magisterskiej dot. strategii FIRE w warunkach GPW.
