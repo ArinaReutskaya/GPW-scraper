@@ -36,10 +36,16 @@ Dane zapisywane są jako osobne pliki `.xls` w folderze `Downloads`.
 - Selenium + Edge WebDriver
 - Pandas
 
-# Przykład działania
+# Przykładowe pliki danych
 
-Zobacz przykładowy plik w folderze `przykładowy_output/`.
+W repozytorium znajdują się przykładowe pliki `.xls` wygenerowane przez scraper dla dnia **2022-01-31**:
 
+- `_2022-01-31_akcje.xls` – notowania akcji,
+- `_2022-01-31_indeksy.xls` – notowania indeksów,
+- `_2022-01-31_obligacje.xls` – notowania obligacji skarbowych.
+
+Każdy z tych plików został pobrany automatycznie z archiwum GPW i pokazuje strukturę danych, jaką generuje skrypt.
+Można je otworzyć bez potrzeby uruchamiania kodu, aby szybko zapoznać się z efektem działania scrapera.
 ---
 
 Autorka: Arina Reutskaya  
