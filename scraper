@@ -1,0 +1,87 @@
+pip install selenium webdriver-manager
+
+from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.edge.options import Options
+from datetime import datetime, timedelta
+import time
+import os
+import pandas as pd
+
+# Ustawienia przeglądarki
+options = Options()
+options.use_chromium = True
+options.add_argument("start-maximized")
+
+# Folder pobierania
+download_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+
+# Uruchamienie przeglądarki
+driver = webdriver.Edge(options=options)
+
+# Zakres dat
+start_date = datetime(2022, 1, 1)
+end_date = datetime(2025, 4, 20)
+
+# Kategorie do pobrania
+categories = {
+    "Akcje": "10",
+    "Indeksy": "1",
+    "Obligacje skarbowe": "13"
+}
+
+# Przeglądaj daty i kategorie
+for single_date in pd.date_range(start=start_date, end=end_date, freq='B'):
+    date_str = single_date.strftime("%d-%m-%Y")
+    
+    for cat_name, cat_value in categories.items():
+        print(f"📥 Pobieram {cat_name} z {date_str}...")
+
+        try:
+            driver.get("https://www.gpw.pl/archiwum-notowan")
+            time.sleep(2)
+
+            # Akceptacja cookies
+            try:
+                accept_btn = WebDriverWait(driver, 2).until(
+                    EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
+                )
+                accept_btn.click()
+                time.sleep(1)
+            except:
+                pass  # brak cookies = dobrze
+
+            # Wybór kategorii
+            category_select = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.NAME, "type"))
+            )
+            category_select.click()
+            category_select.find_element(By.CSS_SELECTOR, f"option[value='{cat_value}']").click()
+            time.sleep(0.5)
+
+            # Wprowadzenie daty
+            date_input = driver.find_element(By.NAME, "date")
+            date_input.clear()
+            date_input.send_keys(date_str)
+            time.sleep(0.5)
+
+            # Kliknij "Pokaż wyniki"
+            show_button = driver.find_element(By.NAME, "show_x")
+            driver.execute_script("arguments[0].click();", show_button)
+            time.sleep(2)
+
+            # Pobieranie XLS – symulacja JS: downloadXLS()
+            driver.execute_script("document.getElementsByName('fetch')[0].value = 1")
+            form = driver.find_element(By.ID, "archiwum-notowan-search")
+            form.submit()
+            time.sleep(4)  # czas na pobranie
+
+        except Exception as e:
+            print(f"⚠️ Błąd pobierania danych: {cat_name} {date_str} → {e}")
+
+# Zamykanie przeglądarki
+driver.quit()
+print("✅ Gotowe! Pliki XLS powinny być w folderze Downloads.")
