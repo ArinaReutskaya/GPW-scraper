@@ -26,6 +26,11 @@ Dzięki temu możesz zautomatyzować pozyskiwanie danych do:
 - pracy magisterskiej,
 - i wszelkich projektów opartych o dane historyczne GPW.
 
+# Setup
+
+Install the required Python libraries using pip:
+pip install selenium webdriver-manager
+
 # Pliki wyjściowe
 
 Dane zapisywane są jako osobne pliki `.xls` w folderze `Downloads`.
