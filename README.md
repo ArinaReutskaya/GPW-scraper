@@ -28,8 +28,6 @@ Dzięki temu możesz zautomatyzować pozyskiwanie danych do:
 
 # Setup
 
-Install the required Python libraries using pip:
-
 pip install selenium webdriver-manager
 
 # Pliki wyjściowe
